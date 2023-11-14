@@ -1,5 +1,5 @@
 <template>
-        <card-forecast-custom v-for="(forecast, index) in dataForecast.slice(1, 7)" :key="forecast.dt" :forecast="forecast"
+        <card-forecast-custom v-for="(forecast, index) in dataForecast.slice(0, 7)" :key="forecast.dt" :forecast="forecast"
             :tomorrow="index" />
 </template>
 <script>
