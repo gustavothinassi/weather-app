@@ -99,7 +99,7 @@ export const whaterStore = defineStore("wheater", {
                 })
 
                 const cityName = this.getName(data[0].name)
-                if (!cityName) {
+                if (cityName) {
                    this.isError = "city is alright"
                 } else{
                     this.dataCity.push(data[0])
