@@ -12,7 +12,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://weather-app-devchallenges-beta.vercel.app/">
       Solution
     </a>
     <span> | </span>
