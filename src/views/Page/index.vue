@@ -5,7 +5,7 @@
                 <div class="flex justify-between p-8">
                     <button class="inline-block px-3 py-2 bg-brand-graydark text-white font-base text-sm uppercase rounded"
                         @click="toggleSideBar(true)">Search for places</button>
-                    <button class="inline-block px-1 bg-brand-graydark rounded-full" @click="inicializeFunctions()">
+                    <button class="inline-block px-1 bg-brand-graydark rounded-full" @click="inicializePositionLocation()">
                         <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="style=stroke">
                                 <g id="gps">
@@ -133,12 +133,18 @@ export default {
         const { isUnits, isLoading, coords } = storeToRefs(store)
 
         onMounted(async () => {
-            inicializeFunctions()
+            inicializeLocation()
         })
 
-        function inicializeFunctions() {
+        async function inicializeLocation () {
+            await coordenadas(coords.value.long, coords.value.lat)
+        }
+
+        function inicializePositionLocation() {
             navigator.geolocation.getCurrentPosition(async function (position) {
-                if (position) { await coordenadas(position.coords.longitude, position.coords.latitude) } else await coordenadas(coords.value.long, coords.value.lat)
+                if (position) { 
+                    await coordenadas(position.coords.longitude, position.coords.latitude) 
+                } 
             })
         }
 
@@ -148,13 +154,8 @@ export default {
         }
 
        function toggleSideBar(value1, value2) {
-            //isClosing.value = false
-            //isOpen.value = false
-            //state.showSideBar = !state.showSideBar
             menu.optionalMenu(value1, value2)
             store.setErrors('')
-
-            //isClosing.value = true
         }
 
         async function units(value) {
@@ -168,7 +169,7 @@ export default {
             isUnits,
             isOpen,
             isLoading,
-            inicializeFunctions,
+            inicializePositionLocation,
             roundNumber,
             isClosing
         }
