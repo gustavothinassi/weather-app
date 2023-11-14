@@ -107,7 +107,7 @@ export const whaterStore = defineStore("wheater", {
                 }            
 
             } catch(err) {
-                this.isError = "cant find city"
+                // this.isError = "cant find city"
 
             }
         
